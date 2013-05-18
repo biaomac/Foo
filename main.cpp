@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     foo(a);
 
     std::cout << a[2] << std::endl;
-    
-    return 0;
+
+    return 0; // Comment test
 }
 
