@@ -1,26 +1,12 @@
 #include <QApplication>
 #include "Widget.hpp"
-#include <QString>
-#include <QDebug>
-#include <QSettings>
-#include <QTextStream>
-#include <QFile>
-#include <memory>
-#include <iostream>
-
-void foo(int* &a) {
-    a = new int[3];
-    a[0] = 1;
-    a[1] = 2;
-    a[2] = 3;
-}
 
 int main(int argc, char *argv[]) {
-    int* a = NULL;
-    foo(a);
+    QApplication app(argc, argv);
 
-    std::cout << a[2] << std::endl;
+    Widget *widget = new Widget();
+    widget->show();
 
-    return 0; // Comment test
+    app.exec();
 }
 

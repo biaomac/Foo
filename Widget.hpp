@@ -18,11 +18,11 @@ public:
 protected:
     virtual void paintEvent(QPaintEvent *);
 
+private slots:
+    void changePreviewBackground(const QColor &color);
+
 private:
     Ui::Widget *ui;
-    QPixmap srcPixmap;
-    QPixmap dstPixmap;
-    QPixmap bgPixmap;
 };
 
 #endif // WIDGET_HPP

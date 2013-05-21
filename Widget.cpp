@@ -2,6 +2,7 @@
 #include "ui_Widget.h"
 
 #include <QDebug>
+#include <qmath.h>
 #include <QPainter>
 #include <QPainterPath>
 
@@ -9,9 +10,13 @@ Widget::Widget(QWidget *parent) :
     QWidget(parent), ui(new Ui::Widget) {
     ui->setupUi(this);
 
-    dstPixmap.load("/Users/Biao/Desktop/x.png", "png");
-    srcPixmap.load("/Users/Biao/Desktop/y.png", "png");
-    bgPixmap = QPixmap(400, 400);
+    changePreviewBackground(Qt::cyan);
+
+    connect(ui->verticalSlider, SIGNAL(valueChanged(int)), ui->colorWheel, SLOT(setBrightness(int)));
+    connect(ui->colorWheel, SIGNAL(colorSelected(QColor)), this, SLOT(changePreviewBackground(QColor)));
+
+    connect(ui->verticalSlider, SIGNAL(valueChanged(int)), ui->colorPicker, SLOT(setBrightness(int)));
+    connect(ui->colorPicker, SIGNAL(colorSelected(QColor)), this, SLOT(changePreviewBackground(QColor)));
 }
 
 Widget::~Widget() {
@@ -19,17 +24,12 @@ Widget::~Widget() {
 }
 
 void Widget::paintEvent(QPaintEvent *) {
-    QPainter mainPainter(this);
 
-    bgPixmap.fill(QColor(0, 0, 0, 100));
-    QPainter painter(&bgPixmap);
-    painter.drawPixmap(0, 0, 400, 400, dstPixmap);
-    painter.setCompositionMode(QPainter::CompositionMode_DestinationOut);
-    painter.drawPixmap(50, 50, 250, 250, srcPixmap); // 把要绘制的不透明的地方扣掉
-    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-//    painter.drawPixmap(50, 50, 150, 150, srcPixmap);
+}
 
-    mainPainter.setRenderHint(QPainter::Antialiasing);
-    mainPainter.fillRect(0, 0, width(), height(), Qt::cyan);
-    mainPainter.drawPixmap(0, 0, 400, 400, bgPixmap);
+void Widget::changePreviewBackground(const QColor &color) {
+    ui->label->setAutoFillBackground(true);
+    QPalette p = ui->label->palette();
+    p.setColor(QPalette::Window, color);
+    ui->label->setPalette(p);
 }

@@ -6,24 +6,69 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>512</width>
-    <height>442</height>
+    <width>826</width>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Widget</string>
+   <string>ColorChooser</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QPushButton" name="myButton">
+    <widget class="QLabel" name="label">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Preview</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QSlider" name="verticalSlider">
+     <property name="maximum">
+      <number>255</number>
+     </property>
+     <property name="value">
+      <number>255</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="ColorWheel" name="colorWheel" native="true"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="ColorPicker" name="colorPicker" native="true"/>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ColorWheel</class>
+   <extends>QWidget</extends>
+   <header>ColorWheel.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ColorPicker</class>
+   <extends>QWidget</extends>
+   <header>ColorPicker.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

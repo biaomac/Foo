@@ -14,11 +14,14 @@ CONFIG -= app_bundle
 
 
 SOURCES += main.cpp\
-        Widget.cpp
+        Widget.cpp \
+    ColorWheel.cpp \
+    ColorPicker.cpp
 
-HEADERS  += Widget.hpp
+HEADERS  += Widget.hpp \
+    ColorWheel.hpp \
+    ColorPicker.hpp
 
 FORMS    += Widget.ui
 
-RESOURCES += \
-    resources.qrc
+RESOURCES +=
